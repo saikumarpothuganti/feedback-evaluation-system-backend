@@ -2,9 +2,12 @@ package com.feedback.backend.controller;
 
 import com.feedback.backend.dto.ApiResponse;
 import com.feedback.backend.dto.FeedbackRequest;
+import com.feedback.backend.entity.Feedback;
 import com.feedback.backend.service.FeedbackService;
 import jakarta.validation.Valid;
+import java.util.List;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,5 +27,10 @@ public class FeedbackController {
     public ResponseEntity<ApiResponse> submit(@Valid @RequestBody FeedbackRequest request) {
         String message = feedbackService.submitFeedback(request);
         return ResponseEntity.ok(ApiResponse.ok(message));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Feedback>> getAll() {
+        return ResponseEntity.ok(feedbackService.getAllFeedback());
     }
 }

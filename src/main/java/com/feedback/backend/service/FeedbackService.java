@@ -3,6 +3,7 @@ package com.feedback.backend.service;
 import com.feedback.backend.dto.FeedbackRequest;
 import com.feedback.backend.entity.Feedback;
 import com.feedback.backend.repository.FeedbackRepository;
+import java.util.List;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -23,5 +24,9 @@ public class FeedbackService {
 
         Feedback saved = feedbackRepository.save(feedback);
         return "Feedback saved with id " + saved.getId();
+    }
+
+    public List<Feedback> getAllFeedback() {
+        return feedbackRepository.findAll();
     }
 }
